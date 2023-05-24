@@ -38,5 +38,16 @@ public class PatientController {
 		return this.patientService.findAllByLastName(lastName);
 	}
 	
+	@DeleteMapping("/{id}")
+public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    this.patientService.delete(id);
+    return ResponseEntity.noContent().build();
+}
+
+@PutMapping("/{id}")
+public ResponseEntity<Patient> update(@PathVariable("id") Long id, @RequestBody Patient patient) {
+    Patient updatedPatient = this.patientService.update(id, patient);
+    return ResponseEntity.ok(updatedPatient);
+}
 
 }
